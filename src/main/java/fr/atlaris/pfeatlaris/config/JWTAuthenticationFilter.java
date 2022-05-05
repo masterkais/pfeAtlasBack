@@ -1,8 +1,8 @@
-package fr.atlaris.pfeatlaris.config;/*
-package fr.byteCode.erp.config;
+package fr.atlaris.pfeatlaris.config;
+
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.byteCode.erp.persistance.entities.User;
+import fr.atlaris.pfeatlaris.entities.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 
-import static fr.byteCode.erp.persistance.constants.SecurityConstant.*;
-import static fr.byteCode.erp.persistance.constants.SecurityConstant.TOKEN_PREFIX;
+import static fr.atlaris.pfeatlaris.constants.SecurityConstant.*;
+
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
@@ -37,7 +37,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        System.out.println("********");
         System.out.println("userName:" + user.getUserName());
         System.out.println("password:" + user.getPassword());
         return authenticationManager.authenticate(
@@ -58,4 +57,3 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     }
 }
 
-*/

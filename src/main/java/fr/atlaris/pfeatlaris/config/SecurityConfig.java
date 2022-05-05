@@ -1,4 +1,5 @@
-package fr.atlaris.pfeatlaris.config;/*package fr.byteCode.erp.config;
+package fr.atlaris.pfeatlaris.config;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -6,8 +7,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -21,15 +24,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
     }
-*/
-   // @Override
-   // protected void configure(HttpSecurity http) throws Exception {
-        // http.csrf().disable();
-        // http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        // http.authorizeRequests().antMatchers( "/login/**","/swagger-ui.html#**").permitAll();
-        // http.authorizeRequests().antMatchers( "/api/**/**").hasAuthority("ADMIN");
-        // http.authorizeRequests().anyRequest().authenticated();
-        // http.addFilter(new JWTAuthenticationFilter(authenticationManager()));
-        // http.addFilterBefore(new JWTAuthorizationFiltre(), UsernamePasswordAuthenticationFilter.class);
-//    }
-//}
+    @Override
+   protected void configure(HttpSecurity http) throws Exception {
+         http.csrf().disable();
+         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+         http.authorizeRequests().antMatchers( "/user/**","/swagger-ui.html#**").permitAll();
+         //http.authorizeRequests().antMatchers( "/user/**").hasAuthority("ADMIN");
+        http.authorizeRequests().antMatchers( "/group/**").hasAuthority("ADMIN");
+        http.authorizeRequests().antMatchers( "/enquete/**").hasAuthority("ADMIN");
+        http.authorizeRequests().antMatchers( "/detailContrat/**").hasAuthority("ADMIN");
+        http.authorizeRequests().antMatchers( "/contrat/**").hasAuthority("ADMIN");
+        http.authorizeRequests().antMatchers( "/demande/**").hasAuthority("ADMIN");
+         http.authorizeRequests().anyRequest().authenticated();
+         http.addFilter(new JWTAuthenticationFilter(authenticationManager()));
+        http.addFilterBefore(new JWTAuthorizationFiltre(), UsernamePasswordAuthenticationFilter.class);
+    }}

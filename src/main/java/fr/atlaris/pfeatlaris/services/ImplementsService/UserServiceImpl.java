@@ -4,6 +4,7 @@ import fr.atlaris.pfeatlaris.DAO.UserDao;
 import fr.atlaris.pfeatlaris.entities.User;
 import fr.atlaris.pfeatlaris.services.InterfaceService.IUserServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,9 @@ import java.util.Optional;
 public class UserServiceImpl implements IUserServices {
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Override
     public User save(User user) {
         return userDao.save(user);
@@ -19,6 +23,8 @@ public class UserServiceImpl implements IUserServices {
 
     @Override
     public User update(User user) {
+        String hachPW = bCryptPasswordEncoder.encode(user.getPassword());
+        user.setPassword(hachPW);
         User userResult=userDao.saveAndFlush(user);
         return userResult;
     }

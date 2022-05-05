@@ -39,6 +39,11 @@ public class ContratController {
     public Contrat update(@RequestBody Contrat contrat){
         return contratServices.update(contrat);
     }
+    @DeleteMapping("/{id}")
+    public boolean delete(@PathVariable Long id){
+        contratServices.delete(id);
+        return true;
+    }
 
 
 }

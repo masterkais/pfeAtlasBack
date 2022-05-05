@@ -58,7 +58,7 @@ public class User implements Serializable {
     @Column(name = "U_DATE_CREATED")
     @EqualsAndHashCode.Include
     private LocalDateTime dateCreated;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Group> groups=new ArrayList<>();
     @Column(name = "U_USER_NAME")
     private String userName;

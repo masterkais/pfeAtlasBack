@@ -1,7 +1,6 @@
-package fr.atlaris.pfeatlaris.config;/*
-package fr.byteCode.erp.config;
+package fr.atlaris.pfeatlaris.config;
 
-import fr.byteCode.erp.persistance.constants.SecurityConstant;
+import fr.atlaris.pfeatlaris.constants.SecurityConstant;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,8 +18,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
-import static fr.byteCode.erp.persistance.constants.SecurityConstant.HEADER_STRING;
-import static fr.byteCode.erp.persistance.constants.SecurityConstant.TOKEN_PREFIX;
+import static fr.atlaris.pfeatlaris.constants.SecurityConstant.HEADER_STRING;
+import static fr.atlaris.pfeatlaris.constants.SecurityConstant.TOKEN_PREFIX;
+
 
 public class JWTAuthorizationFiltre extends OncePerRequestFilter {
     @Override
@@ -63,4 +63,3 @@ public class JWTAuthorizationFiltre extends OncePerRequestFilter {
         }
     }
 }
-*/
