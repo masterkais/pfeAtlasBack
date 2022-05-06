@@ -29,6 +29,11 @@ public class GroupController {
     public Group save(@RequestBody @Valid Group group) {
         return groupService.save(group);
     }
+    @PostMapping("/addRoleToUser")
+    public String addRoleToUser(@RequestParam String userName,@RequestParam String roleName) {
+         groupService.addRoleToUse(userName,roleName);
+         return "success";
+    }
     @PutMapping()
     public Group update(@RequestBody @Valid Group group) {
         return groupService.update(group);

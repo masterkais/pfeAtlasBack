@@ -28,8 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
    protected void configure(HttpSecurity http) throws Exception {
          http.csrf().disable();
          http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-         http.authorizeRequests().antMatchers( "/user/**","/swagger-ui.html#**").permitAll();
-         //http.authorizeRequests().antMatchers( "/user/**").hasAuthority("ADMIN");
+        // http.authorizeRequests().antMatchers( "/user/**","/swagger-ui.html#**").permitAll();
+        http.authorizeRequests().antMatchers( "/user/**").hasAuthority("ADMIN");
         http.authorizeRequests().antMatchers( "/group/**").hasAuthority("ADMIN");
         http.authorizeRequests().antMatchers( "/enquete/**").hasAuthority("ADMIN");
         http.authorizeRequests().antMatchers( "/detailContrat/**").hasAuthority("ADMIN");
